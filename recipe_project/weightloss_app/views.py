@@ -174,3 +174,4 @@ class ReviewDeleteView(DeleteView):
         except Exception as e:
             messages.error(request, f'Error occurred while deleting the review: {str(e)}')
             return redirect(self.get_success_url())
+            
