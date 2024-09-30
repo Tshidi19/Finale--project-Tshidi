@@ -1,0 +1,29 @@
+{% extends 'weightloss_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<h2>Recipes</h2>
+<p>Let's help one another with simple, affordable, and nutritious quick-to-make recipes. While at it, don't forget to have a glass of water nearby!</p>
+
+<!-- Recipe creation form -->
+<form action="{% url 'create_recipe' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Render the form fields -->
+    <button type="submit">Create Recipe</button>
+</form>
+
+<!-- Display existing recipes -->
+<ul>
+    {% for recipe in recipes %}
+        <li>
+            <h3>{{ recipe.title }}</h3>
+            <p>{{ recipe.description }}</p>
+            <a href="{% url 'recipe_detail' recipe.pk %}">View Details</a>
+        </li>
+    {% empty %}
+        <li>No recipes available. Please create one!</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

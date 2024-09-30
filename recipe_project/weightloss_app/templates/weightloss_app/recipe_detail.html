@@ -1,0 +1,54 @@
+{% extends 'weightloss_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="recipe-container">
+    <!-- Recipe Details -->
+    <h2>{{ object.title }}</h2>
+    <div class="recipe-details">
+        <p><strong>Ingredients:</strong> {{ object.ingredients }}</p>
+        <p><strong>Instructions:</strong> {{ object.instructions }}</p>
+        <p><strong>Created by:</strong> {{ object.user.username }}</p>
+    </div>
+
+    <!-- Review Form -->
+    <div class="review-form">
+        <h3>Submit a Review</h3>
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="review" placeholder="Write your review here..." required></textarea>
+            <button type="submit" class="btn-primary">Submit Review</button>
+        </form>
+    </div>
+
+    <!-- Display Reviews -->
+    <div class="review-list">
+        <h3>Reviews</h3>
+        <ul>
+            {% for review in object.review_set.all %}
+                <li class="review-item">
+                    <p>{{ review.review }}</p>
+                    <p><small>Reviewed by {{ review.user.username }} on {{ review.created_at|date:"F j, Y" }}</small></p>
+                    {% if review.user == request.user %}
+                        <a href="{% url 'review_delete' review.pk %}" class="btn-danger" onclick="return confirm('Are you sure you want to delete this review?');">Delete Review</a>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li class="no-reviews">No reviews yet. Be the first to leave a review!</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Recipe Action Buttons -->
+    <div class="recipe-actions">
+        <a href="{% url 'recipe_edit' object.pk %}" class="btn-primary">Edit Recipe</a>
+        <form action="{% url 'recipe_delete' object.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-danger">Delete Recipe</button>
+        </form>
+        <a href="{% url 'recipe_page' %}" class="btn-primary">Back to Recipes</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5dc; /* Creme background */
+    color: #5c4033; /* Wood-text color */
+}
+
+/* Header */
+header {
+    background-color: #8b4513; /* Wood background for header */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: #f5f5dc; /* Creme text color */
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #f5f5dc; /* Creme text for links */
+}
+
+/* Main section */
+main {
+    padding: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #8b4513; /* Wood background for footer */
+    text-align: center;
+    padding: 10px;
+    color: #f5f5dc; /* Creme text for footer */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

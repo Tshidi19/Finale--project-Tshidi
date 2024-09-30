@@ -1,0 +1,50 @@
+{% extends 'weightloss_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+    /* Background image specific to this page */
+    body {
+        background-image: url("{% static 'weightloss/images/nataliya-melnychuk-5SL_Ch5VZng-unsplash (1).jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    main {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 800px;
+        margin: 20px auto;
+        text-align: center;
+    }
+</style>
+
+<h2>Welcome to Savor the Slim!</h2>
+<p>At Savor the Slim, we believe that healthy eating can be both delicious and satisfying. Your journey toward a healthier lifestyle begins with the choices you make every day. Here, you’ll find an array of flavorful recipes designed to support your weight loss goals while tantalizing your taste buds. Let's embrace the journey together!</p>
+<p>We understand that transforming your eating habits can be challenging, but every small step counts. Our collection of easy-to-follow recipes will empower you to make healthier choices without sacrificing taste. Whether you’re looking for quick meals, satisfying snacks, or delightful desserts, we’ve got you covered with innovative ideas that will keep you inspired.</p>
+<p>Remember, this is not just a diet; it's a lifestyle change. You are capable of achieving your goals, and we’re here to support you every step of the way. Join our community, share your experiences, and let’s celebrate the milestones, big and small. Together, we can savor every bite on this journey to a healthier you!</p>
+
+<div>
+    <a href="{% url 'register' %}">
+        <button>Register</button>
+    </a>
+    <a href="{% url 'login' %}">
+        <button>Login</button>
+    </a>
+    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    <a href="{% url 'delete_account' %}">
+        <button>Delete Account</button>
+    </a>
+    <a href="{% url 'recipe_page' %}">
+        <button>View Recipes</button>
+    </a>
+</div>
+
+{% endblock %}
+
